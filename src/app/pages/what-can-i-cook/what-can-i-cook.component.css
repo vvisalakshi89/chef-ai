@@ -1,0 +1,70 @@
+.cook-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff8f0;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #c44d34;
+    margin-bottom: 24px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #eee;
+    border-radius: 6px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  select.active-select:focus,
+  input[type="text"]:focus {
+    border-color: #ff9e44;
+    outline: none;
+    box-shadow: 0 0 5px #ffb766;
+  }
+  
+  .avoid-checkbox label {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: normal;
+  }
+  
+  .suggest-button {
+    margin-top: 20px;
+    background-color: #ff914d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.suggest-button:hover {
+  background-color: #e5722a;
+}
+
+.ai-image {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ai-image img {
+  width: 80px;
+  height: auto;
+}

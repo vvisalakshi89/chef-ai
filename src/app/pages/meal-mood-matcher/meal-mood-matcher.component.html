@@ -1,0 +1,37 @@
+<div class="meal-mood-matcher">
+    <h2>🍲 Meal Mood Matcher</h2>
+  
+    <p>Select your current mood:</p>
+  
+    <div class="mood-grid">
+      <button 
+        type="button" 
+        class="mood-box" 
+        *ngFor="let mood of moods"
+        [class.selected]="selectedMood === mood.label"
+        (click)="selectMood(mood.label)">
+        <span class="mood-icon">{{ mood.icon }}</span>
+        <span class="mood-label">{{ mood.label }}</span>
+      </button>
+    </div>
+  
+    <div class="custom-input">
+      <label for="customPreference">Dietary preferences (optional):</label>
+      <input 
+        id="customPreference" 
+        [(ngModel)]="customInput" 
+        placeholder="e.g., vegetarian, no eggs..." />
+    </div>
+  
+    <button class="submit-btn" (click)="getMealSuggestion()">Submit</button>
+  
+    <div *ngIf="loading" class="loading">
+      <p>⏳ Loading your recipe suggestion...</p>
+    </div>
+  
+    <div *ngIf="recipeResult && !loading" class="result">
+      <h3>🍽️ Suggested Recipe:</h3>
+      <p>{{ recipeResult }}</p>
+    </div>
+  </div>
+  

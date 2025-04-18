@@ -1,0 +1,21 @@
+<div class="explorer-container">
+    <h2>🌍 Choose a Country to Discover Its Dishes</h2>
+  
+    <div class="country-list">
+      <div class="country-item" *ngFor="let country of countries" (click)="fetchDishes(country.name)">
+        <img [src]="country.flag" alt="{{ country.name }} flag" />
+        <span>{{ country.name }}</span>
+      </div>
+    </div>
+  
+    <div *ngIf="loading" class="loader">
+      🍽️ Gathering popular dishes from {{ selectedCountry }}...
+    </div>
+    <img src="food.webp" height="300px" width="400px"/>
+  
+    <div *ngIf="aiResponseHtml && !loading" class="recipe-display animate">
+      <h3>Top Dishes from {{ selectedCountry }}</h3>
+      <div [innerHTML]="aiResponseHtml"></div>
+    </div>
+  </div>
+  

@@ -1,0 +1,79 @@
+<div class="recipe-container">
+    <h2>🥄 Recipe Improviser</h2>
+  
+    <form (ngSubmit)="improviseRecipe()" #recipeForm="ngForm">
+      <!-- Recipe Name -->
+      <div class="form-group">
+        <label for="recipeName">Recipe Name</label>
+        <input
+          type="text"
+          id="recipeName"
+          name="recipeName"
+          [(ngModel)]="recipeName"
+          required
+        />
+      </div>
+  
+      <!-- Ingredients -->
+      <div class="form-group">
+        <label>Ingredients (tick what you don’t have)</label>
+        <div
+          class="ingredient-row"
+          *ngFor="let ingredient of ingredients; let i = index"
+        >
+          <input
+            type="text"
+            [(ngModel)]="ingredient.name"
+            name="ingredient-{{ i }}"
+            required
+          />
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="ingredient.missing"
+              name="missing-{{ i }}"
+            />
+            Missing
+          </label>
+        </div>
+        <button type="button" class="add-button" (click)="addIngredient()">
+          + Add Ingredient
+        </button>
+      </div>
+  
+      <!-- Mood Tags -->
+      <div class="form-group">
+        <label>Cooking Mood</label>
+        <div class="mood-options">
+          <label
+            *ngFor="let mood of moods; let j = index"
+            class="mood-chip"
+          >
+            <input
+              type="checkbox"
+              [(ngModel)]="mood.selected"
+              name="mood-{{ j }}"
+            />
+            {{ mood.label }}
+          </label>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" [disabled]="!recipeForm.form.valid">
+        🍳 Improvise!
+      </button>
+    </form>
+  
+    <div *ngIf="loading" class="thinking-loader">
+        <div class="thinking-icon">🤔</div>
+        <p>Thinking hard to cook up delicious ideas...</p>
+      </div>
+      
+    <!-- AI Response -->
+    <div *ngIf="aiResponse" class="ai-response">
+      <h3>✨ AI Suggested Recipe:</h3>
+      <div [innerHTML]="aiResponse"></div>
+    </div>
+  </div>
+  

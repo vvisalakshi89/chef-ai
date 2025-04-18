@@ -1,0 +1,99 @@
+<div class="cook-form-container">
+    <h2>🍲 What Can I Cook?</h2>
+  
+    <form class="cook-form" (ngSubmit)="onSubmit()">
+      <!-- 1. Ingredients -->
+      <label>Available Ingredients</label>
+      <input type="text" [(ngModel)]="form.ingredients" name="ingredients" placeholder="e.g., tomato, onion, rice" required />
+  
+      <!-- 2. Food Type -->
+      <label>Type of Food</label>
+      <input type="text" [(ngModel)]="form.foodType" name="foodType" placeholder="e.g., South Indian, North Indian, Chettinad" required />
+  
+      <!-- 3. Diet -->
+      <label>Diet Preference</label>
+      <select [(ngModel)]="form.diet" name="diet" class="active-select">
+        <option value="veg">Vegetarian</option>
+        <option value="nonveg">Non-Vegetarian</option>
+        <option value="vegan">Vegan</option>
+      </select>
+  
+      <!-- 4. Dish Type -->
+      <label>Dish Type</label>
+      <select [(ngModel)]="form.dishType" name="dishType" class="active-select">
+        <option value="main">Main Dish</option>
+        <option value="side">Side Dish</option>
+        <option value="snack">Snack</option>
+      </select>
+  
+      <!-- 5. Prep Time -->
+      <label>Prep Time</label>
+      <select [(ngModel)]="form.prepTime" name="prepTime" class="active-select">
+        <option value=" less than 20">Less than 20 mins</option>
+        <option value="20-40">20–40 mins</option>
+        <option value=">40">More than 40 mins</option>
+      </select>
+  
+      <!-- 6. Avoid Ingredients -->
+      <label>Avoid (optional)</label>
+      <div class="avoid-checkbox">
+        <label><input type="checkbox" [(ngModel)]="form.avoid.eggs" name="avoid.eggs" /> Eggs</label>
+        <label><input type="checkbox" [(ngModel)]="form.avoid.oil" name="avoid.oil" /> Oil</label>
+        <label><input type="checkbox" [(ngModel)]="form.avoid.deepfried" name="avoid.deepfried" /> Deep Fried</label>
+      </div>
+  
+      <button type="submit" class="suggest-button">🤖 Suggest Recipes</button>
+    </form>
+  <!-- Display loading state -->
+  <div *ngIf="loading" class="loading">
+    <p>Loading recipe suggestions...</p>
+  </div>
+
+  <!-- Display recipe result -->
+  <div *ngIf="recipeResult" class="recipe-result">
+    <h3>Suggested Recipe:</h3>
+    <div class="recipe-content">
+        <div [innerHTML]="recipeResult"></div>
+
+        <div *ngIf="imageUrl">
+            <img [src]="imageUrl" alt="Recipe image" class="Recipe Image" />
+          </div>
+      <!-- Add image or visual representation -->
+      <div class="recipe-image">
+        <img [src]="imageUrl" alt="Recipe Image" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Add styles for the result display */
+  .recipe-result {
+    margin-top: 20px;
+    background-color: #e9f5ff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .recipe-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .recipe-image {
+    margin-left: 20px;
+  }
+
+  .recipe-image img {
+    width: 150px;
+    height: auto;
+  }
+
+  .loading {
+    font-size: 16px;
+    color: #ff914d;
+    text-align: center;
+  }
+</style>
+  
